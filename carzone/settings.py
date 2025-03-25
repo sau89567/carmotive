@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-=bj2=8#_9&(tvge*r()s)9gz!ui%-)8%%o57qtxpr_#q^yceqx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '0d6105e6d1a14d52a6ae65b3aade8ed1.vfs.cloud9.eu-west-1.amazonaws.com',
+    'localhost',
+    '127.0.0.1',
+]
+
 
 
 # Application definition
@@ -76,10 +81,20 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'carzonedb',
+        'USER': 'postgres',
+        'PASSWORD': 'Sau654321',
+        'HOST': 'carzonedb.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',
+        'PORT': '5432',
+        
     }
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://0d6105e6d1a14d52a6ae65b3aade8ed1.vfs.cloud9.eu-west-1.amazonaws.com',
+]
+
 
 
 # Password validation
@@ -121,6 +136,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'carzone/static',
 ]
+
+# media settings
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 
 # Default primary key field type
