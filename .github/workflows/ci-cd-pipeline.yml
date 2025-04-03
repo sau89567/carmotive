@@ -43,9 +43,8 @@ jobs:
           pip install awscli  # Install AWS CLI to interact with AWS
           aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  # AWS Access Key
           aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}}  # AWS Secret Key
-          aws configure set region us-east-1  # Set AWS Region
+          aws configure set region eu-west-1  # Set AWS Region
 
           # Deploy to Elastic Beanstalk
-          eb init -p python-3.9 carzone --region us-east-1  # Initialize EB with your app name
+          eb init -p python-3.11 carmotive --region eu-west-1  # Initialize EB with your app name
           eb deploy  # Deploy your app to Elastic Beanstalk
-
