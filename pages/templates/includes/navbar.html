@@ -4,7 +4,18 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand company-logo" href="{% url 'index'%}">
-                <img src="{% static 'img/logos/logo.png' %}" alt="logo">
+                <!-- Instead of logo image, show the company name -->
+                <span class="bungee-spice-regular">Car Motive</span>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+        .bungee-spice-regular {
+            font-family: "Bungee Spice", sans-serif; /* Custom font */
+            font-size: 24px; /* Adjust font size as needed */
+            font-weight: bold; /* Make it bold */
+            color: #000; /* Adjust text color */
+            text-transform: uppercase; /* Optional: make it uppercase */
+        }
+    </style>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars"></span>

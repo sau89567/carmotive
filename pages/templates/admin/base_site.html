@@ -3,8 +3,18 @@
 
 {% block branding %}
   <h1 id="head">
-    <a href="/admin"><img src="{% static 'img/logos/black-logo.png' %}" alt="" class="brand_img" height="50" width="300"></a>
+  <a href="/admin" class="company-name">Car Motive</a>
   </h1>
+  <style>
+        .company-name {
+            font-family: 'Roboto', sans-serif; /* Custom font */
+            font-size: 36px;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            text-decoration: none; /* Removes underline */
+        }
+    </style>
 {% endblock %}
 
 {% block extrastyle %}

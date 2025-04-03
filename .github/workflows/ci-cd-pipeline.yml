@@ -1,0 +1,51 @@
+name: Django CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # This runs the pipeline when there is a push to the main branch
+  pull_request:
+    branches:
+      - main  # This triggers the pipeline when a pull request is made to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # The environment where the workflow will run
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checkout your code from the repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # Use the Python version that your project needs
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Install your Python dependencies
+
+      - name: Run tests
+        run: |
+          pytest --maxfail=1 --disable-warnings -q  # Run tests using pytest
+
+      - name: Static Code Analysis (flake8, pylint, mypy)
+        run: |
+          pip install flake8 pylint mypy
+          flake8 carzone/  # Run flake8 for code style checks
+          pylint carzone/  # Run pylint for code quality checks
+          mypy carzone/  # Run mypy for type checking
+
+      - name: Deploy to AWS (Elastic Beanstalk)
+        if: success()  # Only deploy if tests and checks pass
+        run: |
+          pip install awscli  # Install AWS CLI to interact with AWS
+          aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  # AWS Access Key
+          aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}}  # AWS Secret Key
+          aws configure set region us-east-1  # Set AWS Region
+
+          # Deploy to Elastic Beanstalk
+          eb init -p python-3.9 carzone --region us-east-1  # Initialize EB with your app name
+          eb deploy  # Deploy your app to Elastic Beanstalk
+
