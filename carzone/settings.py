@@ -181,5 +181,3 @@ EMAIL_HOST_PASSWORD = ''  # Use the generated App Password if 2FA is enabled
 DEFAULT_FROM_EMAIL = 'your-email@gmail.com'
 
 
-[pytest]
-DJANGO_SETTINGS_MODULE = carzone.settings
